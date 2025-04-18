@@ -90,28 +90,23 @@
                         <a href="{{ route('admin.property-owners') }}" class="block py-1 px-3 rounded hover:bg-blue-50 hover:text-blue-600 flex justify-between">
                             • Property Owners <span class="text-xs bg-gray-100 text-gray-800 px-1.5 rounded">{{ $ownersCount }}</span>
                         </a>
-                        
+
                     </div>
                 </div>
 
                 {{-- Owner Requests --}}
-<div x-data="{ open: false }">
-    <button @click="open = !open" class="w-full text-left py-2 px-3 rounded-lg hover:bg-blue-50 hover:text-blue-600 flex justify-between items-center">
-        🔔 Owner Requests
-        <span class="text-xs bg-red-100 text-red-800 px-2 py-0.5 rounded">{{ $pendingRequestsCount }}</span>
-    </button>
-    <div x-show="open" class="ml-4 space-y-1 mt-1" x-cloak>
-        <a href="{{ route('admin.owner-requests.index', ['status' => 'pending']) }}" class="block py-1 px-3 rounded hover:bg-blue-50 hover:text-blue-600 flex justify-between">
-            • Pending <span class="text-xs bg-yellow-100 text-yellow-800 px-1.5 rounded">{{ $pendingRequestsCount }}</span>
-        </a>
-        <a href="{{ route('admin.owner-requests.index', ['status' => 'approved']) }}" class="block py-1 px-3 rounded hover:bg-blue-50 hover:text-blue-600">
-            • Approved
-        </a>
-        <a href="{{ route('admin.owner-requests.index', ['status' => 'rejected']) }}" class="block py-1 px-3 rounded hover:bg-blue-50 hover:text-blue-600">
-            • Rejected
-        </a>
-    </div>
-</div>
+                <div x-data="{ open: false }">
+                    <button @click="open = !open" class="w-full text-left py-2 px-3 rounded-lg hover:bg-blue-50 hover:text-blue-600 flex justify-between items-center">
+                        🔔 Owner Requests
+                        <span class="text-xs bg-red-100 text-red-800 px-2 py-0.5 rounded">{{ $pendingRequestsCount }}</span>
+                    </button>
+                    <div x-show="open" class="ml-4 space-y-1 mt-1" x-cloak>
+                        <a href="{{ route('admin.owner-requests.index', ['status' => 'pending']) }}" class="block py-1 px-3 rounded hover:bg-blue-50 hover:text-blue-600 flex justify-between">
+                            • Pending <span class="text-xs bg-yellow-100 text-yellow-800 px-1.5 rounded">{{ $pendingRequestsCount }}</span>
+                        </a>
+                       
+                    </div>
+                </div>
 
 
                 <!-- Reports & Settings -->
