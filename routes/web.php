@@ -33,3 +33,36 @@ Route::middleware('guest')->group(function () {
 });
 
 Route::middleware('auth')->post('/logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
+
+
+
+// Client Routes
+Route::middleware(['auth'])->prefix('client')->name('client.')->group(function () {
+    // Property routes
+    Route::get('/properties', [\App\Http\Controllers\Client\PropertyController::class, 'index'])
+        ->name('properties.index');
+    Route::get('/properties/{property}', [\App\Http\Controllers\Client\PropertyController::class, 'show'])
+        ->name('properties.show');
+    Route::get('/my-properties', [\App\Http\Controllers\Client\PropertyController::class, 'myProperties'])
+        ->name('properties.my-properties');
+    
+    // Inquiry routes
+    Route::post('/properties/{property}/inquiries', [\App\Http\Controllers\Client\InquiryController::class, 'store'])
+        ->name('inquiries.store');
+    Route::get('/inquiries', [\App\Http\Controllers\Client\InquiryController::class, 'index'])
+        ->name('inquiries.index');
+    Route::get('/inquiries/{inquiry}', [\App\Http\Controllers\Client\InquiryController::class, 'show'])
+        ->name('inquiries.show');
+});
+
+Route::get('/test-route', function() {
+    return "This is a test route";
+});
+
+// Add to routes/web.php
+Route::get('/debug-properties', function() {
+    return [
+        'available_count' => App\Models\Property::where('status', 'available')->count(),
+        'all_properties' => App\Models\Property::all()
+    ];
+});

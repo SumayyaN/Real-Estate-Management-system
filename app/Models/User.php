@@ -64,4 +64,14 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    public function properties()
+{
+    return $this->hasMany(Property::class, 'owner_id');
+}
+
+public function inquiries()
+{
+    return $this->hasMany(Inquiry::class);
+}
 }

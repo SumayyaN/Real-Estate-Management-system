@@ -5,3 +5,10 @@
 [x-cloak] {
     display: none;
 }
+
+.filter-btn {
+    transition: all 0.2s ease-in-out;
+}
+.filter-btn:hover {
+    transform: translateY(-1px);
+}
