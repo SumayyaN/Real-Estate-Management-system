@@ -34,9 +34,13 @@
 
             <!-- Page Content -->
             <main>
-                {{ $slot }}
+            @include('layouts.owner-nav')
+
+            {!! $slot ?? '' !!}
+            @yield('content')
             </main>
         </div>
+       
 
         @stack('modals')
 

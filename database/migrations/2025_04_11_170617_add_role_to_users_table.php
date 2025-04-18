@@ -10,17 +10,23 @@ return new class extends Migration
      * Run the migrations.
      */
     public function up()
-{
-    Schema::table('users', function (Illuminate\Database\Schema\Blueprint $table) {
-        $table->string('role')->default('client'); // Or ->nullable() if you prefer
-    });
-}
+    {
+        Schema::table('users', function (Blueprint $table) {
+            if (!Schema::hasColumn('users', 'role')) {
+                $table->string('role')->default('client');
+            }
+        });
+    }
 
-public function down()
-{
-    Schema::table('users', function (Illuminate\Database\Schema\Blueprint $table) {
-        $table->dropColumn('role');
-    });
-}
-
+    /**
+     * Reverse the migrations.
+     */
+    public function down()
+    {
+        Schema::table('users', function (Blueprint $table) {
+            if (Schema::hasColumn('users', 'role')) {
+                $table->dropColumn('role');
+            }
+        });
+    }
 };
