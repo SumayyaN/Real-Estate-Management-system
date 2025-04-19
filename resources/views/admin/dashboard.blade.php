@@ -21,14 +21,13 @@
 
     <div class="bg-white border border-gray-200 rounded-xl p-4 shadow">
         <p class="text-gray-500 text-sm">Pending Owner Requests</p>
-        <h2 class="text-2xl font-bold text-yellow-600 mt-2">{{ $pendingOwnerRequests ?? 0 }}</h2>
+        <h2 class="text-2xl font-bold  mt-2">{{ $pendingOwnerRequests ?? 0 }}</h2>
     </div>
 
     <div class="bg-white border border-gray-200 rounded-xl p-4 shadow">
         <p class="text-gray-500 text-sm">Active Property Listings</p>
-        <h2 class="text-2xl font-bold text-indigo-600 mt-2">{{ $activeListings ?? 0 }}</h2>
+        <h2 class="text-2xl font-bold text-green-700 mt-2">{{ $activeListings ?? 0 }}</h2>
     </div>
-
 
     <div class="bg-white border border-gray-200 rounded-xl p-4 shadow">
         <p class="text-gray-500 text-sm">Clients</p>
@@ -40,7 +39,6 @@
         <h2 class="text-2xl font-bold text-purple-600 mt-2">{{ $ownersCount ?? 0 }}</h2>
     </div>
 </div>
-
 
 {{-- Quick Actions --}}
 <div class="bg-white border border-gray-200 rounded-xl p-6 shadow mb-6">
@@ -63,43 +61,4 @@
     </div>
 </div>
 
-
-{{-- Chart Placeholder --}}
-<div class="bg-white border border-gray-200 rounded-xl p-6 shadow">
-    <h3 class="text-lg font-semibold mb-4 text-gray-800">Properties Added Per Month</h3>
-    <canvas id="propertiesChart" class="w-full h-64"></canvas>
-</div>
-@endsection
-
-@section('scripts')
-{{-- Chart.js Placeholder --}}
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<script>
-    const ctx = document.getElementById('propertiesChart').getContext('2d');
-    const propertiesChart = new Chart(ctx, {
-        type: 'bar',
-        data: {
-            labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
-            datasets: [{
-                label: 'Properties',
-                data: [5, 9, 3, 7, 4, 6], // Dummy data
-                backgroundColor: '#3B82F6',
-                borderRadius: 6,
-            }]
-        },
-        options: {
-            responsive: true,
-            plugins: {
-                legend: {
-                    display: false
-                }
-            },
-            scales: {
-                y: {
-                    beginAtZero: true
-                }
-            }
-        }
-    });
-</script>
 @endsection
