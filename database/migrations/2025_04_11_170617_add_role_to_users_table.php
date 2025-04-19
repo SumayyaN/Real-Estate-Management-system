@@ -11,8 +11,10 @@ return new class extends Migration
      */
     public function up()
 {
-    Schema::table('users', function (Illuminate\Database\Schema\Blueprint $table) {
-        $table->string('role')->default('client'); // Or ->nullable() if you prefer
+    Schema::table('users', function (Blueprint $table) {
+        if (!Schema::hasColumn('users', 'role')) {
+            $table->string('role')->default('client');
+        }
     });
 }
 

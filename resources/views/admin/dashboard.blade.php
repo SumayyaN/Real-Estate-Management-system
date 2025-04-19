@@ -1,15 +1,64 @@
-<x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Admin Dashboard') }}
-        </h2>
-    </x-slot>
+@extends('layouts.admin')
 
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg p-6">
-                <p>Welcome Admin! This is your dashboard.</p>
-            </div>
-        </div>
+@section('content')
+{{-- Welcome Message --}}
+<div class="mb-6">
+    <h1 class="text-2xl font-bold text-gray-800">Welcome back, Admin!</h1>
+    <p class="text-gray-500">{{ \Carbon\Carbon::now()->format('l, F j, Y') }}</p>
+</div>
+
+{{-- Summary Statistic Cards --}}
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
+    <div class="bg-white border border-gray-200 rounded-xl p-4 shadow">
+        <p class="text-gray-500 text-sm">Total Properties</p>
+        <h2 class="text-2xl font-bold text-blue-700 mt-2">{{ $totalProperties ?? 0 }}</h2>
     </div>
-</x-app-layout>
+
+    <div class="bg-white border border-gray-200 rounded-xl p-4 shadow">
+        <p class="text-gray-500 text-sm">Total Users</p>
+        <h2 class="text-2xl font-bold text-green-700 mt-2">{{ $totalUsers ?? 0 }}</h2>
+    </div>
+
+    <div class="bg-white border border-gray-200 rounded-xl p-4 shadow">
+        <p class="text-gray-500 text-sm">Pending Owner Requests</p>
+        <h2 class="text-2xl font-bold  mt-2">{{ $pendingOwnerRequests ?? 0 }}</h2>
+    </div>
+
+    <div class="bg-white border border-gray-200 rounded-xl p-4 shadow">
+        <p class="text-gray-500 text-sm">Active Property Listings</p>
+        <h2 class="text-2xl font-bold text-green-700 mt-2">{{ $activeListings ?? 0 }}</h2>
+    </div>
+
+    <div class="bg-white border border-gray-200 rounded-xl p-4 shadow">
+        <p class="text-gray-500 text-sm">Clients</p>
+        <h2 class="text-2xl font-bold text-cyan-600 mt-2">{{ $clientsCount ?? 0 }}</h2>
+    </div>
+
+    <div class="bg-white border border-gray-200 rounded-xl p-4 shadow">
+        <p class="text-gray-500 text-sm">Property Owners</p>
+        <h2 class="text-2xl font-bold text-purple-600 mt-2">{{ $ownersCount ?? 0 }}</h2>
+    </div>
+</div>
+
+{{-- Quick Actions --}}
+<div class="bg-white border border-gray-200 rounded-xl p-6 shadow mb-6">
+    <h3 class="text-lg font-semibold mb-4 text-gray-800">Quick Actions</h3>
+    <div class="flex flex-wrap gap-4">
+        <a href="{{ route('admin.properties.index') }}"
+            class="bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-700 transition text-sm">
+            All Properties
+        </a>
+
+        <a href="{{ route('admin.clients') }}"
+            class="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition text-sm">
+            Users
+        </a>
+
+        <a href="{{ route('admin.owner-requests.index', ['status' => 'pending']) }}"
+            class="bg-yellow-600 text-white px-4 py-2 rounded-lg hover:bg-yellow-700 transition text-sm">
+            Property Owner Requests
+        </a>
+    </div>
+</div>
+
+@endsection
