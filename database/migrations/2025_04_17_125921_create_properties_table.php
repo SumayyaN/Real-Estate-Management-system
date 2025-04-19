@@ -1,39 +1,34 @@
-<?php
+@extends('layouts.admin')
 
-use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
-use Illuminate\Support\Facades\Schema;
+@section('content')
+<div class="bg-white p-6 rounded-xl shadow">
+    <div class="flex justify-between items-center mb-6">
+        <h2 class="text-2xl font-bold text-gray-800">📊 Reports & Analytics</h2>
+    </div>
 
-return new class extends Migration
-{
-    public function up(): void
-    {
-        Schema::create('properties', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');
-            $table->text('description')->nullable();
+    <!-- KPI Summary Cards -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+        <div class="bg-blue-50 p-4 rounded-lg border border-blue-100">
+            <p class="text-sm font-medium text-blue-600">Total Properties</p>
+            <p class="text-2xl font-bold text-gray-800">{{ $totalProperties }}</p>
+        </div>
 
-            $table->enum('type', ['rent', 'sale']);
-            $table->enum('status', ['available', 'sold', 'rented'])->default('available');
+        <div class="bg-green-50 p-4 rounded-lg border border-green-100">
+            <p class="text-sm font-medium text-green-600">Available Properties</p>
+            <p class="text-2xl font-bold text-gray-800">{{ $availableProperties }}</p>
+        </div>
 
-            $table->string('city');
-            $table->string('address')->nullable();
-            $table->string('image')->nullable();
+        <div class="bg-yellow-50 p-4 rounded-lg border border-yellow-100">
+            <p class="text-sm font-medium text-yellow-600">Rented Properties</p>
+            <p class="text-2xl font-bold text-gray-800">{{ $rentedProperties }}</p>
+        </div>
 
-            $table->decimal('price', 12, 2);
+        <div class="bg-purple-50 p-4 rounded-lg border border-purple-100">
+            <p class="text-sm font-medium text-purple-600">Total Revenue</p>
+            <p class="text-2xl font-bold text-gray-800">₦{{ number_format($totalRevenue, 2) }}</p>
+        </div>
+    </div>
 
-            $table->foreignId('owner_id')->constrained('users')->onDelete('cascade');
-            
-
-            $table->enum('property_type', ['land', 'building']);
-            $table->enum('property_subtype', ['residential_plot', 'commercial_plot', 'apartment', 'office']);
-
-            $table->timestamps();
-        });
-    }
-
-    public function down(): void
-    {
-        Schema::dropIfExists('properties');
-    }
-};
+    <!-- More analytics sections here later -->
+</div>
+@endsection

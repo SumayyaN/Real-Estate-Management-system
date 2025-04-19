@@ -56,4 +56,17 @@ class AdminDashboardController extends Controller
         $requests = OwnerRequest::all(); // or with pagination
         return view('admin.owner_requests.index', compact('requests'));
     }
+
+    public function reports()
+{
+    // You can pass some data here later like property stats, exports, etc.
+    return view('admin.reports');
+}
+
+public function settings()
+{
+    // This might include notification toggles, site preferences, etc.
+    return view('admin.settings');
+}
+
 }

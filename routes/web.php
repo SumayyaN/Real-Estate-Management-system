@@ -69,3 +69,11 @@ Route::middleware(['auth', 'isClient'])->get('/client/dashboard', function () {
 Route::middleware(['auth', 'isOwner'])->get('/owner/dashboard', function () {
     return view('owner.dashboard');
 })->name('owner.dashboard');
+
+Route::middleware(['auth', 'isAdmin'])->prefix('admin')->name('admin.')->group(function () {
+    Route::get('/reports', [AdminDashboardController::class, 'reports'])->name('reports');
+    Route::get('/settings', [AdminDashboardController::class, 'settings'])->name('settings');
+});
+
+
+

@@ -110,8 +110,9 @@
 
 
                 <!-- Reports & Settings -->
-                <a href="#" class="block py-2 px-3 rounded-lg hover:bg-blue-50 hover:text-blue-600">Reports</a>
-                <a href="#" class="block py-2 px-3 rounded-lg hover:bg-blue-50 hover:text-blue-600">Settings</a>
+                <a href="{{ route('admin.reports') }}" class="block py-2 px-3 rounded-lg hover:bg-blue-50 hover:text-blue-600">📊 Reports</a>
+                <a href="{{ route('admin.settings') }}" class="block py-2 px-3 rounded-lg hover:bg-blue-50 hover:text-blue-600">⚙️ Settings</a>
+
 
                 <!-- Logout -->
                 <form method="POST" action="{{ route('logout') }}" class="mt-6">
