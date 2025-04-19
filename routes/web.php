@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
+use App\Http\Controllers\OwnerRequestController;
 
 // Welcome Route (Home Page)
 Route::get('/', function () {
@@ -33,3 +34,14 @@ Route::middleware('guest')->group(function () {
 });
 
 Route::middleware('auth')->post('/logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
+
+// routes/web.php
+
+Route::view('/', 'welcome')->name('welcome');
+
+Route::get('/owner-request', [OwnerRequestController::class, 'create'])->name('owner.request.form');
+Route::post('/owner-request', [OwnerRequestController::class, 'store'])->name('owner.request.submit');
+
+Route::get('/', function () {
+    return view('welcome'); // or whatever your home view is
+})->name('home');
