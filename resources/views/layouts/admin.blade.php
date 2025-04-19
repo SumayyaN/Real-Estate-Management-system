@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Admin Dashboard</title>
+    <title>Admin </title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- Hide [x-cloak] content until Alpine is ready -->

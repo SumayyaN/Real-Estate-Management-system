@@ -87,4 +87,23 @@ class OwnerRequestController extends Controller
     return redirect()->route('admin.owner-requests.index')
         ->with('success', 'Owner request approved and user added as owner.');
 }
+
+public function reject($id)
+{
+    $ownerRequest = OwnerRequest::findOrFail($id);
+
+    //  check if already rejected
+    if ($ownerRequest->status === 'rejected') {
+        return redirect()->back()->with('info', 'This request is already rejected.');
+    }
+
+    
+   
+    $ownerRequest->delete();
+
+
+    return redirect()->route('admin.owner-requests.index')
+        ->with('success', 'Owner request has been rejected.');
+}
+
 }
