@@ -11,6 +11,21 @@
             font-family: 'Inter', sans-serif;
             background-color: #f8fafc;
         }
+        
+    .property-image {
+        height: 200px;
+        width: 100%;
+        object-fit: cover;
+    }
+    .no-image {
+        height: 200px;
+        width: 100%;
+        background-color: #f3f4f6;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #6b7280;
+    }
     </style>
 </head>
 <body class="min-h-screen bg-gray-50">
@@ -35,12 +50,45 @@
                     </div>
                 </div>
                 <div class="hidden md:ml-6 md:flex md:items-center">
-                    <form method="POST" action="{{ route('logout') }}">
-                        @csrf
-                        <button type="submit" class="inline-flex items-center px-3 py-1.5 border border-transparent text-sm font-medium rounded-md text-gray-700 bg-gray-100 hover:bg-gray-200 focus:outline-none">
-                            Logout
-                        </button>
-                    </form>
+                    <!-- Profile dropdown -->
+                    <div class="ml-3 relative">
+                        <div>
+                            <button type="button" 
+                                    class="flex items-center max-w-xs text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500" 
+                                    id="user-menu-button" 
+                                    aria-expanded="false" 
+                                    aria-haspopup="true"
+                                    onclick="toggleDropdown()">
+                                <span class="sr-only">Open user menu</span>
+                                @if(Auth::user()->profile_photo_path)
+                                    <img class="h-8 w-8 rounded-full object-cover" src="{{ asset('storage/' . Auth::user()->profile_photo_path) }}" alt="Profile Photo">
+                                @else
+                                    <div class="h-8 w-8 rounded-full bg-gray-200 flex items-center justify-center text-gray-600 font-medium">
+                                        {{ strtoupper(substr(Auth::user()->name, 0, 1)) }}
+                                    </div>
+                                @endif
+                                <span class="ml-2 text-gray-700">{{ Auth::user()->name }}</span>
+                                <!-- Chevron icon -->
+                                <svg class="ml-1 h-4 w-4 text-gray-500" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                                </svg>
+                            </button>
+                        </div>
+                        
+                        <!-- Dropdown menu - show/hide based on dropdown state -->
+                        <div class="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none hidden" 
+                            role="menu" 
+                            aria-orientation="vertical" 
+                            aria-labelledby="user-menu-button" 
+                            id="user-dropdown">
+                            <div class="py-1" role="none">
+                                <form method="POST" action="{{ route('logout') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">
+                                    @csrf
+                                    <button type="submit" class="w-full text-left">Sign out</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -48,6 +96,24 @@
 
     <!-- Main Content -->
     <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        @if(session('welcome'))
+        <div class="bg-blue-50 border-l-4 border-blue-400 p-4">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0">
+                        <svg class="h-5 w-5 text-blue-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2h-1V9z" clip-rule="evenodd" />
+                        </svg>
+                    </div>
+                    <div class="ml-3">
+                        <p class="text-sm text-blue-700">
+                            {{ session('welcome') }}
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    @endif
         @if(session('success'))
             <div class="mb-6 p-4 bg-green-50 rounded-lg border border-green-200">
                 <p class="text-green-700">{{ session('success') }}</p>
@@ -65,5 +131,27 @@
             </p>
         </div>
     </footer>
+    <script>
+    function toggleDropdown() {
+        const dropdown = document.getElementById('user-dropdown');
+        const button = document.getElementById('user-menu-button');
+        
+        // Toggle dropdown visibility
+        dropdown.classList.toggle('hidden');
+        
+        // Update aria-expanded attribute
+        const isExpanded = button.getAttribute('aria-expanded') === 'true';
+        button.setAttribute('aria-expanded', !isExpanded);
+        
+        // Close when clicking outside
+        document.addEventListener('click', function closeDropdown(e) {
+            if (!button.contains(e.target) && !dropdown.contains(e.target)) {
+                dropdown.classList.add('hidden');
+                button.setAttribute('aria-expanded', 'false');
+                document.removeEventListener('click', closeDropdown);
+            }
+        });
+    }
+</script>
 </body>
 </html>

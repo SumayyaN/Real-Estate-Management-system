@@ -66,3 +66,7 @@ Route::get('/debug-properties', function() {
         'all_properties' => App\Models\Property::all()
     ];
 });
+
+// Add these right after your existing auth routes
+Route::post('login', [\App\Http\Controllers\Auth\LoginController::class, 'login']);
+Route::post('register', [\App\Http\Controllers\Auth\RegisterController::class, 'register']);
