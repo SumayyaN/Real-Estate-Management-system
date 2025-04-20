@@ -10,6 +10,7 @@ class Property extends Model
     use HasFactory;
 
     protected $fillable = [
+      
         'name',
         'description',
         'type',
@@ -58,4 +59,6 @@ public static function getSubtypeMap(): array
         'building' => ['apartment', 'office', 'house'],
     ];
 }
+}
+
 }
