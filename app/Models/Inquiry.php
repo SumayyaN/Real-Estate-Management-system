@@ -17,6 +17,7 @@ class Inquiry extends Model
         'status',
         'owner_response',
         'clientStatus'
+
     ];
 
     public function property()

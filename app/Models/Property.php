@@ -10,7 +10,6 @@ class Property extends Model
     use HasFactory;
 
     protected $fillable = [
-      
         'name',
         'description',
         'type',
@@ -23,11 +22,38 @@ class Property extends Model
         'property_type',
         'property_subtype'
     ];
-
+  
     public function owner()
     {
         return $this->belongsTo(User::class, 'owner_id');
     }
+
+
+    
+    public function getFormattedPrice()
+    {
+        return '$' . number_format($this->price, 2);
+    }
+
+   
+    public function getPriceLabel()
+    {
+        return $this->type === 'rent' ? 'per month' : 'total price';
+    }
+
+   
+    public function getFormattedPropertyType()
+    {
+        return ucfirst($this->property_type);
+    }
+
+    
+    public function getFormattedPropertySubtype()
+    {
+        return str_replace('_', ' ', ucfirst($this->property_subtype));
+    }
+
+
     public function scopeFilter($query, array $filters)
 {
     $query->when($filters['type'] ?? false, fn($query, $type) =>
@@ -61,4 +87,5 @@ public static function getSubtypeMap(): array
 }
 }
 
-}
+
+
