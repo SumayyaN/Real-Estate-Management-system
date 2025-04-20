@@ -10,7 +10,13 @@ export default {
         './storage/framework/views/*.php',
         './resources/views/**/*.blade.php',
     ],
-
+    safelist: [
+        'hover:text-indigo-600',
+        'text-gray-700',
+        'transition',
+        'duration-150',
+        'ease-in-out',
+    ],
     theme: {
         extend: {
             fontFamily: {

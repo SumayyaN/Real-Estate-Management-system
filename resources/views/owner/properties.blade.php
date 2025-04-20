@@ -31,23 +31,23 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <!-- Summary Stats -->
             <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
-                <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-xl transition">
-                    <h3 class="text-sm font-medium text-gray-500">Total Properties</h3>
-                    <p class="mt-2 text-3xl font-extrabold text-gray-900">{{ $stats['total_properties'] ?? 0 }}</p>
-                </div>
-                <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-xl transition">
-                    <h3 class="text-sm font-medium text-gray-500">Total Value</h3>
-                    <p class="mt-2 text-3xl font-extrabold text-gray-900">${{ number_format($stats['monthly_revenue'] ?? 0, 2) }}</p>
-                </div>
-                <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-xl transition">
-                    <h3 class="text-sm font-medium text-gray-500">For Rent</h3>
-                    <p class="mt-2 text-3xl font-extrabold text-gray-900">{{ Property::where('type', 'rent')->count() }}</p>
-                </div>
-                <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-xl transition">
-                    <h3 class="text-sm font-medium text-gray-500">For Sale</h3>
-                    <p class="mt-2 text-3xl font-extrabold text-gray-900">{{ Property::where('type', 'sale')->count() }}</p>
-                </div>
-            </div>
+    <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-xl transition">
+        <h3 class="text-sm font-medium text-gray-500">Total Properties</h3>
+        <p class="mt-2 text-3xl font-extrabold text-gray-900">{{ $stats['total_properties'] ?? 0 }}</p>
+    </div>
+    <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-xl transition">
+        <h3 class="text-sm font-medium text-gray-500">Total Value</h3>
+        <p class="mt-2 text-3xl font-extrabold text-gray-900">${{ number_format($stats['monthly_revenue'] ?? 0, 2) }}</p>
+    </div>
+    <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-xl transition">
+        <h3 class="text-sm font-medium text-gray-500">For Rent</h3>
+        <p class="mt-2 text-3xl font-extrabold text-gray-900">{{ $stats['for_rent'] ?? 0 }}</p>
+    </div>
+    <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-xl transition">
+        <h3 class="text-sm font-medium text-gray-500">For Sale</h3>
+        <p class="mt-2 text-3xl font-extrabold text-gray-900">{{ $stats['for_sale'] ?? 0 }}</p>
+    </div>
+</div>
 
             <!-- Property Listings -->
             <div class="space-y-6">

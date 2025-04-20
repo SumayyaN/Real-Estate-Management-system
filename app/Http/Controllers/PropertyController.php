@@ -10,20 +10,21 @@ use Illuminate\Support\Facades\Storage;
 class PropertyController extends Controller
 {
     /**
-     * Display a listing of the properties.
+     * Display a listing of the properties for the authenticated owner.
      */
     public function index()
     {
-        $properties = Property::with('owner')
+        $properties = Property::where('owner_id', Auth::id())
+            ->with('owner')
             ->orderBy('created_at', 'desc')
             ->paginate(10);
 
-        // Calculate statistics
+        // Calculate statistics for the authenticated owner's properties
         $stats = [
-            'total_properties' => Property::count(),
-            'monthly_revenue' => Property::where('type', 'rent')->sum('price'),
-            'for_rent' => Property::where('type', 'rent')->count(),
-            'for_sale' => Property::where('type', 'sale')->count()
+            'total_properties' => Property::where('owner_id', Auth::id())->count(),
+            'monthly_revenue' => Property::where('owner_id', Auth::id())->where('type', 'rent')->sum('price'),
+            'for_rent' => Property::where('owner_id', Auth::id())->where('type', 'rent')->count(),
+            'for_sale' => Property::where('owner_id', Auth::id())->where('type', 'sale')->count()
         ];
 
         return view('owner.properties', [
@@ -38,9 +39,9 @@ class PropertyController extends Controller
     protected function getPropertyStats()
     {
         return [
-            'total_properties' => Property::count(),
-            'total_units' => Property::sum('units'), // Note: Requires 'units' column
-            'monthly_revenue' => Property::where('type', 'rent')->sum('price'),
+            'total_properties' => Property::where('owner_id', Auth::id())->count(),
+            'total_units' => Property::where('owner_id', Auth::id())->sum('units'), // Note: Requires 'units' column
+            'monthly_revenue' => Property::where('owner_id', Auth::id())->where('type', 'rent')->sum('price'),
             'occupancy_rate' => 0, // Will implement later with tenants
         ];
     }

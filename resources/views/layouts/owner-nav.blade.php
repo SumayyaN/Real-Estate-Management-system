@@ -7,16 +7,35 @@
             </div>
 
             <!-- Desktop Nav -->
-            <div class=" md:flex items-center space-x-8 text-gray-700 font-medium">
-                <a href="{{ route('owner.dashboard') }}" class="hover:text-indigo-600 transition">Dashboard</a>
-                <a href="{{ route('properties.index') }}" class="hover:text-indigo-600 transition">Properties</a>
-                <a href="{{ route('owner.upload') }}" class="hover:text-indigo-600 transition">Upload Property</a>
-                <a href="{{ route('owner.tenants') }}" class="hover:text-indigo-600 transition">Tenants</a>
+            <div class="hidden md:flex items-center space-x-8">
+                <a href="{{ route('owner.dashboard') }}" 
+                   class="text-gray-700 font-medium hover:text-indigo-600 transition duration-150 ease-in-out">
+                    Home
+                </a>
+                <a href="{{ route('properties.index') }}" 
+                   class="text-gray-700 font-medium hover:text-indigo-600 transition duration-150 ease-in-out">
+                    Properties
+                </a>
+                <a href="{{ route('owner.upload') }}" 
+                   class="text-gray-700 font-medium hover:text-indigo-600 transition duration-150 ease-in-out">
+                    Upload Property
+                </a>
+                <a href="{{ route('tenants.index') }}" 
+                   class="text-gray-700 font-medium hover:text-indigo-600 transition duration-150 ease-in-out">
+                    Tenants
+                </a>
+                <form method="POST" action="{{ route('logout') }}">
+                    @csrf
+                    <button type="submit"
+                            class="inline-flex items-center px-4 py-2 bg-indigo-600 hover:bg-indigo-700 active:bg-indigo-900 text-white text-xs font-semibold uppercase tracking-widest rounded-md transition focus:outline-none focus:ring focus:ring-indigo-300">
+                        Log Out
+                    </button>
+                </form>
             </div>
 
             <!-- Hamburger (Mobile) -->
             <div class="md:hidden">
-                <button id="menu-toggle" class="text-gray-700 focus:outline-none">
+                <button id="menu-toggle" class="text-gray-700 focus:outline-none" aria-label="Toggle menu">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                               d="M4 6h16M4 12h16M4 18h16" />
@@ -27,11 +46,30 @@
     </div>
 
     <!-- Mobile Menu -->
-    <div id="mobile-menu" class="md:hidden hidden px-4 pb-4 space-y-3 font-medium text-gray-700">
-        <a href="{{ route('owner.dashboard') }}" class="block hover:text-indigo-600 transition">Dashboard</a>
-        <a href="#" class="block hover:text-indigo-600 transition">Properties</a>
-        <a href="#" class="block hover:text-indigo-600 transition">Upload Property</a>
-        <a href="#" class="block hover:text-indigo-600 transition">Tenants</a>
+    <div id="mobile-menu" class="md:hidden hidden px-4 pb-4 space-y-3">
+        <a href="{{ route('owner.dashboard') }}" 
+           class="block text-gray-700 font-medium hover:text-indigo-600 transition duration-150 ease-in-out">
+            Dashboard
+        </a>
+        <a href="{{ route('properties.index') }}" 
+           class="block text-gray-700 font-medium hover:text-indigo-600 transition duration-150 ease-in-out">
+            Properties
+        </a>
+        <a href="{{ route('owner.upload') }}" 
+           class="block text-gray-700 font-medium hover:text-indigo-600 transition duration-150 ease-in-out">
+            Upload Property
+        </a>
+        <a href="{{ route('tenants.index') }}" 
+           class="block text-gray-700 font-medium hover:text-indigo-600 transition duration-150 ease-in-out">
+            Tenants
+        </a>
+        <form method="POST" action="{{ route('logout') }}">
+            @csrf
+            <button type="submit"
+                    class="block w-full text-left inline-flex items-center px-4 py-2 bg-indigo-600 hover:bg-indigo-700 active:bg-indigo-900 text-white text-xs font-semibold uppercase tracking-widest rounded-md transition focus:outline-none focus:ring focus:ring-indigo-300">
+                Log Out
+            </button>
+        </form>
     </div>
 
     <!-- Mobile Menu Script -->
