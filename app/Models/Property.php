@@ -9,11 +9,6 @@ class Property extends Model
 {
     use HasFactory;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array<int, string>
-     */
     protected $fillable = [
         'name',
         'description',
@@ -25,54 +20,72 @@ class Property extends Model
         'price',
         'owner_id',
         'property_type',
-        'property_subtype',
+        'property_subtype'
     ];
-
-    /**
-     * Get the owner of the property.
-     */
+  
     public function owner()
     {
         return $this->belongsTo(User::class, 'owner_id');
     }
 
-    /**
-     * Get the formatted price.
-     *
-     * @return string
-     */
+
+    
     public function getFormattedPrice()
     {
         return '$' . number_format($this->price, 2);
     }
 
-    /**
-     * Get the price label based on type.
-     *
-     * @return string
-     */
+   
     public function getPriceLabel()
     {
         return $this->type === 'rent' ? 'per month' : 'total price';
     }
 
-    /**
-     * Get the formatted property type.
-     *
-     * @return string
-     */
+   
     public function getFormattedPropertyType()
     {
         return ucfirst($this->property_type);
     }
 
-    /**
-     * Get the formatted property subtype.
-     *
-     * @return string
-     */
+    
     public function getFormattedPropertySubtype()
     {
         return str_replace('_', ' ', ucfirst($this->property_subtype));
     }
+
+
+    public function scopeFilter($query, array $filters)
+{
+    $query->when($filters['type'] ?? false, fn($query, $type) =>
+        $query->where('type', $type)
+    );
+
+    $query->when($filters['city'] ?? false, fn($query, $city) =>
+        $query->where('city', 'like', '%'.$city.'%')
+    );
+
+    $query->when($filters['property_type'] ?? false, fn($query, $propertyType) =>
+        $query->where('property_type', $propertyType)
+    );
+
+    $query->when($filters['property_subtype'] ?? false, fn($query, $propertySubtype) =>
+        $query->where('property_subtype', $propertySubtype)
+    );
 }
+
+public function inquiries()
+{
+    return $this->hasMany(Inquiry::class);
+}
+
+public static function getSubtypeMap(): array
+{
+    return [
+        'land' => ['residential_plot', 'commercial_plot'],
+        'building' => ['apartment', 'office', 'house'],
+    ];
+}
+}
+
+
+

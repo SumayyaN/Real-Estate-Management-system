@@ -10,6 +10,7 @@ return new class extends Migration
      * Run the migrations.
      */
     public function up()
+
     {
         Schema::table('users', function (Blueprint $table) {
             if (!Schema::hasColumn('users', 'role')) {
@@ -30,3 +31,4 @@ return new class extends Migration
         });
     }
 };
+
