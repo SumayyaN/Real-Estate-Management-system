@@ -75,5 +75,29 @@ Route::middleware(['auth', 'isAdmin'])->prefix('admin')->name('admin.')->group(f
     Route::get('/settings', [AdminDashboardController::class, 'settings'])->name('settings');
 });
 
+Route::middleware('auth')->post('/logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
 
 
+
+// Client Routes
+Route::middleware(['auth'])->prefix('client')->name('client.')->group(function () {
+    // Property routes
+    Route::get('/properties', [\App\Http\Controllers\Client\PropertyController::class, 'index'])
+        ->name('properties.index');
+    Route::get('/properties/{property}', [\App\Http\Controllers\Client\PropertyController::class, 'show'])
+        ->name('properties.show');
+    Route::get('/my-properties', [\App\Http\Controllers\Client\PropertyController::class, 'myProperties'])
+        ->name('properties.my-properties');
+    
+    // Inquiry routes
+    Route::post('/properties/{property}/inquiries', [\App\Http\Controllers\Client\InquiryController::class, 'store'])
+        ->name('inquiries.store');
+    Route::get('/inquiries', [\App\Http\Controllers\Client\InquiryController::class, 'index'])
+        ->name('inquiries.index');
+    Route::get('/inquiries/{inquiry}', [\App\Http\Controllers\Client\InquiryController::class, 'show'])
+        ->name('inquiries.show');
+});
+
+// Add these right after your existing auth routes
+Route::post('login', [\App\Http\Controllers\Auth\LoginController::class, 'login']);
+Route::post('register', [\App\Http\Controllers\Auth\RegisterController::class, 'register']);

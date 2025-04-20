@@ -5,3 +5,25 @@
 [x-cloak] {
     display: none;
 }
+
+.filter-btn {
+    transition: all 0.2s ease-in-out;
+}
+.filter-btn:hover {
+    transform: translateY(-1px);
+}
+
+#user-menu {
+    transition: all 0.2s ease-out;
+    transform-origin: top right;
+    transform: scale(0.95);
+    opacity: 0;
+    visibility: hidden;
+}
+
+#user-menu-button[aria-expanded="true"] + #user-menu {
+    transform: scale(1);
+    opacity: 1;
+    visibility: visible;
+    display: block;
+}

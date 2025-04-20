@@ -10,24 +10,55 @@ class Property extends Model
     use HasFactory;
 
     protected $fillable = [
-        'title',
+      
+        'name',
         'description',
-        'price',
-        'location',
+        'type',
         'status',
-        // Add other fields here as needed
+        'city',
+        'address',
+        'image',
+        'price',
+        'owner_id',
+        'property_type',
+        'property_subtype'
     ];
 
-    /**
-     * Get the owner of the property.
-     *
-     * This method defines a relationship where each Property belongs to one User (owner).
-     * The foreign key is assumed to be 'owner_id' in the properties table.
-     * Adjust if your foreign key is different.
-     */
     public function owner()
     {
-        // The property belongs to a user (owner) and the 'owner_id' is the foreign key
-        return $this->belongsTo(User::class, 'owner_id'); // Assuming 'owner_id' is the column linking to the 'users' table
+        return $this->belongsTo(User::class, 'owner_id');
     }
+    public function scopeFilter($query, array $filters)
+{
+    $query->when($filters['type'] ?? false, fn($query, $type) =>
+        $query->where('type', $type)
+    );
+
+    $query->when($filters['city'] ?? false, fn($query, $city) =>
+        $query->where('city', 'like', '%'.$city.'%')
+    );
+
+    $query->when($filters['property_type'] ?? false, fn($query, $propertyType) =>
+        $query->where('property_type', $propertyType)
+    );
+
+    $query->when($filters['property_subtype'] ?? false, fn($query, $propertySubtype) =>
+        $query->where('property_subtype', $propertySubtype)
+    );
+}
+
+public function inquiries()
+{
+    return $this->hasMany(Inquiry::class);
+}
+
+public static function getSubtypeMap(): array
+{
+    return [
+        'land' => ['residential_plot', 'commercial_plot'],
+        'building' => ['apartment', 'office', 'house'],
+    ];
+}
+}
+
 }
