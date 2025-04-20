@@ -47,16 +47,24 @@ class PropertyController extends Controller
 
 public function myProperties()
 {
-    $properties = Property::where('owner_id', auth()->id())
-        ->where('status', '!=', 'available')
-        ->latest()
-        ->paginate(10);
+    $userId = auth()->id();
+    
+    $properties = Property::whereHas('inquiries', function($query) use ($userId) {
+        $query->where('user_id', $userId)
+              ->whereIn('clientStatus', ['renting', 'bought']);
+    })
+    ->with(['inquiries' => function($query) use ($userId) {
+        $query->where('user_id', $userId)
+              ->whereIn('clientStatus', ['renting', 'bought']);
+    }])
+    ->paginate(10);
 
     return view('client.properties.my-properties', compact('properties'));
-}    
+}
 
     public function show(Property $property)
     {
+        $property->load('owner');
         return view('client.properties.show', compact('property'));
     }
 }

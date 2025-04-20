@@ -16,8 +16,11 @@
                 <div class="sm:col-span-2">
                     <h4 class="text-sm font-medium text-gray-500">Property</h4>
                     <div class="mt-2 flex items-center">
-                        @if($inquiry->property->image)
-                            <img class="h-12 w-12 rounded-full object-cover mr-3" src="{{ asset('storage/' . $inquiry->property->image) }}" alt="">
+                        @if($inquiry->property->image && file_exists(public_path('storage/properties/' . $inquiry->property->image)))
+                            <img class="h-12 w-12 rounded-full object-cover mr-3" 
+                                src="{{ asset('storage/properties/' . $inquiry->property->image) }}" 
+                                alt="{{ $inquiry->property->name }}"
+                                onerror="this.style.display='none'">
                         @endif
                         <div>
                             <p class="text-lg font-medium text-gray-900">{{ $inquiry->property->name }}</p>

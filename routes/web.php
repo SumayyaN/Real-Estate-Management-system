@@ -55,18 +55,6 @@ Route::middleware(['auth'])->prefix('client')->name('client.')->group(function (
         ->name('inquiries.show');
 });
 
-Route::get('/test-route', function() {
-    return "This is a test route";
-});
-
-// Add to routes/web.php
-Route::get('/debug-properties', function() {
-    return [
-        'available_count' => App\Models\Property::where('status', 'available')->count(),
-        'all_properties' => App\Models\Property::all()
-    ];
-});
-
 // Add these right after your existing auth routes
 Route::post('login', [\App\Http\Controllers\Auth\LoginController::class, 'login']);
 Route::post('register', [\App\Http\Controllers\Auth\RegisterController::class, 'register']);

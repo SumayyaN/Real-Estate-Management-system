@@ -60,13 +60,17 @@
                                     aria-haspopup="true"
                                     onclick="toggleDropdown()">
                                 <span class="sr-only">Open user menu</span>
-                                @if(Auth::user()->profile_photo_path)
-                                    <img class="h-8 w-8 rounded-full object-cover" src="{{ asset('storage/' . Auth::user()->profile_photo_path) }}" alt="Profile Photo">
-                                @else
-                                    <div class="h-8 w-8 rounded-full bg-gray-200 flex items-center justify-center text-gray-600 font-medium">
-                                        {{ strtoupper(substr(Auth::user()->name, 0, 1)) }}
-                                    </div>
-                                @endif
+                                    @auth
+                                        @if(auth()->user()->profile_photo_path && Storage::disk('public')->exists(auth()->user()->profile_photo_path))
+                                            <img class="h-8 w-8 rounded-full object-cover" 
+                                                src="{{ asset('storage/' . auth()->user()->profile_photo_path) }}" 
+                                                alt="{{ auth()->user()->name }}'s profile photo">
+                                        @else
+                                            <div class="h-8 w-8 rounded-full bg-gray-200 flex items-center justify-center text-gray-600 font-medium">
+                                                {{ strtoupper(substr(auth()->user()->name, 0, 1)) }}
+                                            </div>
+                                        @endif
+                                    @endauth
                                 <span class="ml-2 text-gray-700">{{ Auth::user()->name }}</span>
                                 <!-- Chevron icon -->
                                 <svg class="ml-1 h-4 w-4 text-gray-500" fill="currentColor" viewBox="0 0 20 20">
@@ -130,6 +134,7 @@
                 &copy; {{ date('Y') }} EstatePro. All rights reserved.
             </p>
         </div>
+        
     </footer>
     <script>
     function toggleDropdown() {
