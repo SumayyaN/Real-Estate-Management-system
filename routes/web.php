@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
+use App\Http\Controllers\OwnerRequestController;
 
 use App\Http\Controllers\PropertyController;
 use App\Http\Controllers\UploadController;
@@ -131,7 +132,17 @@ Route::middleware(['auth', 'isAdmin'])->prefix('admin')->name('admin.')->group(f
     Route::get('/settings', [AdminDashboardController::class, 'settings'])->name('settings');
 });
 
-Route::middleware('auth')->post('/logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
+Route::middleware('auth')->post('/logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout')
+// routes/web.php
+
+Route::view('/', 'welcome')->name('welcome');
+
+Route::get('/owner-request', [OwnerRequestController::class, 'create'])->name('owner.request.form');
+Route::post('/owner-request', [OwnerRequestController::class, 'store'])->name('owner.request.submit');
+
+Route::get('/', function () {
+    return view('welcome'); // or whatever your home view is
+})->name('home');
 
 
 
@@ -157,4 +168,5 @@ Route::middleware(['auth'])->prefix('client')->name('client.')->group(function (
 // Add these right after your existing auth routes
 Route::post('login', [\App\Http\Controllers\Auth\LoginController::class, 'login']);
 Route::post('register', [\App\Http\Controllers\Auth\RegisterController::class, 'register']);
+
 

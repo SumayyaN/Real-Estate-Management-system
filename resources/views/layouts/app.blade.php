@@ -1,4 +1,5 @@
 
+
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
@@ -15,13 +16,14 @@
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
 
-       
+    
     </head>
-    <body class="font-sans antialiased">
-        <x-banner />
-
+    <body>
         <div class="min-h-screen bg-gray-100">
-          
+
+            @include('layouts.navigation')
+
+       
 
             <!-- Page Heading -->
             @if (isset($header))
@@ -34,6 +36,9 @@
 
             <!-- Page Content -->
             <main>
+
+                {{ $slot ?? '' }}  <!-- Add null check -->
+
             @include('layouts.owner-nav')
 
             {!! $slot ?? '' !!}
@@ -44,6 +49,10 @@
 
         @stack('modals')
 
+        @livewireScripts
+
+
      
+
     </body>
 </html>
