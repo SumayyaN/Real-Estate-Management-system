@@ -8,22 +8,27 @@ use Illuminate\Support\Facades\Schema;
 class AddRoleToUsersTable extends Migration
 {
     public function up()
+
+
     {
-        // Only add the column if it doesn't exist
-        if (!Schema::hasColumn('users', 'role')) {
-            Schema::table('users', function (Blueprint $table) {
+        Schema::table('users', function (Blueprint $table) {
+            if (!Schema::hasColumn('users', 'role')) {
                 $table->string('role')->default('client');
-            });
-        }
+            }
+        });
     }
 
+    /**
+     * Reverse the migrations.
+     */
     public function down()
     {
-        // Only drop the column if it exists
-        if (Schema::hasColumn('users', 'role')) {
-            Schema::table('users', function (Blueprint $table) {
+        Schema::table('users', function (Blueprint $table) {
+            if (Schema::hasColumn('users', 'role')) {
                 $table->dropColumn('role');
-            });
-        }
+            }
+        });
     }
-}
+};
+
+
