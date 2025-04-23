@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Property;
 use Illuminate\Http\Request;
 
-class PropertyController extends Controller
+class AdminPropertyController extends Controller
 {
     /**
      * Display a listing of all properties.

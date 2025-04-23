@@ -20,7 +20,7 @@ use App\Models\User;
     <!-- Navbar -->
     <nav class="bg-indigo-600 p-4 shadow-md">
         <div class="container mx-auto flex justify-between items-center">
-            <h1 class="text-white text-2xl font-bold">Real Estate Management</h1>
+            <h1 class="text-white text-2xl font-bold">Coderants Real Estate</h1>
             <div>
                 <a href="{{ route('tenants.create') }}" class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 transition">Add Tenant</a>
                 <a href="#" class="text-white ml-4">Logout</a>

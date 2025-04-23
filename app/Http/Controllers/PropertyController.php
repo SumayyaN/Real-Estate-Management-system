@@ -74,7 +74,7 @@ class PropertyController extends Controller
 
         // Handle image upload
         if ($request->hasFile('image')) {
-            $validated['image'] = $request->file('image')->store('property-images', 'public');
+            $validated['image'] = $request->file('image')->store('properties', 'public');
         }
 
         // Set the owner to the currently authenticated user

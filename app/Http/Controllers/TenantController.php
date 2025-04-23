@@ -14,17 +14,20 @@ class TenantController extends Controller
      * Display a listing of tenants for the authenticated property owner's properties.
      */
     public function index()
-    {
-        $owner = Auth::user();
-        $tenants = Inquiry::where('clientStatus', 'renting')
-            ->whereHas('property', function ($query) use ($owner) {
-                $query->where('user_id', $owner->id);
-            })
-            ->with(['user', 'property'])
-            ->get();
+{
+    $owner = Auth::user();
+    $tenants = Inquiry::where(function($query) {
+            $query->where('clientStatus', 'renting')
+                  ->orWhere('clientStatus', 'bought');
+        })
+        ->whereHas('property', function ($query) use ($owner) {
+            $query->where('owner_id', $owner->id);
+        })
+        ->with(['user', 'property'])
+        ->get();
 
-        return view('owner.index', compact('tenants'));
-    }
+    return view('owner.index', compact('tenants'));
+}
 
     /**
      * Show the form to add a tenant from approved inquiries with clientStatus 'inquiring'.
@@ -35,7 +38,7 @@ class TenantController extends Controller
         $inquiries = Inquiry::where('status', 'approved')
             ->where('clientStatus', 'inquiring')
             ->whereHas('property', function ($query) use ($owner) {
-                $query->where('user_id', $owner->id);
+                $query->where('owner_id', $owner->id);
             })
             ->with(['user', 'property'])
             ->get();
@@ -54,7 +57,7 @@ class TenantController extends Controller
         ]);
 
         $inquiry = Inquiry::findOrFail($request->inquiry_id);
-        if ($inquiry->property->user_id !== Auth::user()->id) {
+        if ($inquiry->property->owner_id !== Auth::user()->id) {
             return redirect()->route('tenants.index')->with('error', 'Unauthorized action.');
         }
 

@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 use App\Http\Controllers\Controller;
 
-class OwnerRequestController extends Controller
+class AdminOwnerRequestController extends Controller
 {
     // Display all property owner requests with optional status filter
     public function index(Request $request)

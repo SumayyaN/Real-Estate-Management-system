@@ -39,7 +39,7 @@ class UploadController extends Controller
         
         // Handle image upload
         if ($request->hasFile('image')) {
-            $imagePath = $request->file('image')->store('property-images', 'public');
+            $imagePath = $request->file('image')->store('properties', 'public');
             $validated['image'] = $imagePath;
         }
         
@@ -110,7 +110,7 @@ class UploadController extends Controller
         
         // Handle image upload
         if ($request->hasFile('image')) {
-            $imagePath = $request->file('image')->store('property-images', 'public');
+            $imagePath = $request->file('image')->store('properties', 'public');
             $validated['image'] = $imagePath;
         }
         

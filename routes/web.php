@@ -9,8 +9,8 @@ use App\Http\Controllers\UploadController;
 use App\Http\Controllers\OwnerController;
 use App\Http\Controllers\TenantController;
 use App\Http\Controllers\Admin\AdminDashboardController;
-use App\Http\Controllers\Admin\PropertyController;
-use App\Http\Controllers\Admin\OwnerRequestController;
+use App\Http\Controllers\Admin\AdminPropertyController;
+use App\Http\Controllers\Admin\AdminOwnerRequestController;
 use App\Http\Controllers\Admin\UserController;
 
 // 🏠 Home Route (Public Welcome Page)
@@ -84,27 +84,27 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'isAdmin'])->group(f
     Route::get('/property-owners', [AdminDashboardController::class, 'showPropertyOwners'])->name('property-owners');
 
     // Properties
-    Route::get('/properties', [PropertyController::class, 'index'])->name('properties.index');
-    Route::get('/properties/pending', [PropertyController::class, 'pending'])->name('properties.pending');
-    Route::get('/properties/{id}', [PropertyController::class, 'show'])->name('properties.show');
-    Route::post('/properties/{id}/approve', [PropertyController::class, 'approve'])->name('properties.approve');
-    Route::post('/properties/{id}/reject', [PropertyController::class, 'reject'])->name('properties.reject');
+    Route::get('/properties', [AdminPropertyController::class, 'index'])->name('properties.index');
+    Route::get('/properties/pending', [AdminPropertyController::class, 'pending'])->name('properties.pending');
+    Route::get('/properties/{id}', [AdminPropertyController::class, 'show'])->name('properties.show');
+    Route::post('/properties/{id}/approve', [AdminPropertyController::class, 'approve'])->name('properties.approve');
+    Route::post('/properties/{id}/reject', [AdminPropertyController::class, 'reject'])->name('properties.reject');
 
     // Properties Filters
-    Route::get('/properties/type/{type}/{subtype}', [PropertyController::class, 'byType'])->name('properties.byType');
-    Route::get('/properties/status/{status}', [PropertyController::class, 'byStatus'])->name('properties.byStatus');
+    Route::get('/properties/type/{type}/{subtype}', [AdminPropertyController::class, 'byType'])->name('properties.byType');
+    Route::get('/properties/status/{status}', [AdminPropertyController::class, 'byStatus'])->name('properties.byStatus');
 
 
     // ✅ Owner Request Routes
-    Route::resource('owner-requests', OwnerRequestController::class)->only([
+    Route::resource('owner-requests', AdminOwnerRequestController::class)->only([
         'index',
         'show',
         'update'
     ]);
 
     // ✅ Owner Request Actions
-    Route::post('/owner-requests/{id}/approve', [OwnerRequestController::class, 'approve'])->name('owner-requests.approve');
-    Route::post('/owner-requests/{id}/reject', [OwnerRequestController::class, 'reject'])->name('owner-requests.reject');
+    Route::post('/owner-requests/{id}/approve', [AdminOwnerRequestController::class, 'approve'])->name('owner-requests.approve');
+    Route::post('/owner-requests/{id}/reject', [AdminOwnerRequestController::class, 'reject'])->name('owner-requests.reject');
 });
 
 // 👤 Client Dashboard
@@ -113,9 +113,6 @@ Route::middleware(['auth', 'isClient'])->get('/client/dashboard', function () {
 })->name('client.dashboard');
 
 
-Route::middleware(['auth', 'isOwner'])->get('/owner/dashboard', [OwnerController::class, 'dashboard'])
-    ->name('owner.dashboard');
-
 // Authenticated Session Routes (Login and Logout)
 Route::middleware('guest')->group(function () {
     Route::get('/login', [AuthenticatedSessionController::class, 'create'])->name('login');
@@ -123,16 +120,16 @@ Route::middleware('guest')->group(function () {
 });
 
 // 🏘️ Owner Dashboard
-Route::middleware(['auth', 'isOwner'])->get('/owner/dashboard', function () {
-    return view('owner.dashboard');
-})->name('owner.dashboard');
+
+Route::middleware(['auth', 'isOwner'])->get('/owner/dashboard', [OwnerController::class, 'dashboard'])
+    ->name('owner.dashboard');
 
 Route::middleware(['auth', 'isAdmin'])->prefix('admin')->name('admin.')->group(function () {
     Route::get('/reports', [AdminDashboardController::class, 'reports'])->name('reports');
     Route::get('/settings', [AdminDashboardController::class, 'settings'])->name('settings');
 });
 
-Route::middleware('auth')->post('/logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout')
+Route::middleware('auth')->post('/logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
 // routes/web.php
 
 Route::view('/', 'welcome')->name('welcome');
@@ -170,3 +167,7 @@ Route::post('login', [\App\Http\Controllers\Auth\LoginController::class, 'login'
 Route::post('register', [\App\Http\Controllers\Auth\RegisterController::class, 'register']);
 
 
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    // Add other profile routes if needed
+});
