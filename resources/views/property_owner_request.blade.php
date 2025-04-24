@@ -133,7 +133,7 @@
                         </svg>
                     </div>
                 </div>
-                <h1 class="header-font text-4xl font-bold text-white mb-2">EstatesPro Properties</h1>
+                <h1 class="header-font text-4xl font-bold text-white mb-2">Coderants Real Estate Properties</h1>
                 <p class="text-xl text-amber-100 font-light">Ownership Verification Portal</p>
             </div>
 

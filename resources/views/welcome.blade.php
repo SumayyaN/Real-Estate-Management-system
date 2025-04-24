@@ -74,9 +74,9 @@
                 </a>
                 <div x-show="open" x-transition class="absolute left-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-10">
                     <!-- Original dropdown items -->
-                    <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-indigo-50 hover:text-indigo-600">All Properties</a>
-    <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-indigo-50 hover:text-indigo-600">Buildings</a>
-    <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-indigo-50 hover:text-indigo-600">Land</a>
+                    <a href="{{ route('register') }}" class="block px-4 py-2 text-gray-700 hover:bg-indigo-50 hover:text-indigo-600">All Properties</a>
+    <a href="{{ route('register') }}" class="block px-4 py-2 text-gray-700 hover:bg-indigo-50 hover:text-indigo-600">Buildings</a>
+    <a href="{{ route('register') }}" class="block px-4 py-2 text-gray-700 hover:bg-indigo-50 hover:text-indigo-600">Land</a>
     
                 </div>
             </div>
@@ -92,16 +92,16 @@
                 
                 <div x-show="open" x-transition class="absolute left-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-10">
                     <!-- Original dropdown items -->
-                    <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-indigo-50 hover:text-indigo-600">Tenant Management</a>
-    <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-indigo-50 hover:text-indigo-600">Property Valuation</a>
-    <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-indigo-50 hover:text-indigo-600">Property Renting and buying</a>
-    <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-indigo-50 hover:text-indigo-600">Property Marketing</a>
-    <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-indigo-50 hover:text-indigo-600">Rent Collection</a>
+                    <a href="{{route('owner.request.form')}}" class="block px-4 py-2 text-gray-700 hover:bg-indigo-50 hover:text-indigo-600">Tenant Management</a>
+    <a href="{{route('owner.request.form')}}" class="block px-4 py-2 text-gray-700 hover:bg-indigo-50 hover:text-indigo-600">Property Valuation</a>
+    <a href="{{route('owner.request.form')}}" class="block px-4 py-2 text-gray-700 hover:bg-indigo-50 hover:text-indigo-600">Property Renting and buying</a>
+    <a href="{{route('owner.request.form')}}" class="block px-4 py-2 text-gray-700 hover:bg-indigo-50 hover:text-indigo-600">Property Marketing</a>
+    <a href="{{route('owner.request.form')}}" class="block px-4 py-2 text-gray-700 hover:bg-indigo-50 hover:text-indigo-600">Rent Collection</a>
                 </div>
             </div>
 
-            <a href="#" class="text-gray-700 hover:text-indigo-600 font-medium">About</a>
-            <a href="#" class="text-gray-700 hover:text-indigo-600 font-medium">Contact Us</a>
+            <a href="{{route('aboutus')}}" class="text-gray-700 hover:text-indigo-600 font-medium">About Us</a>
+           
         </div>
 
         <!-- Original Auth Buttons -->
@@ -147,10 +147,10 @@
                     Streamline your property portfolio with our comprehensive management platform. From tenant screening to maintenance tracking, we've got you covered.
                 </p>
                 <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
-                    <a href="#" class="px-8 py-3 bg-indigo-600 text-white rounded-md hover:bg-indigo-700 transition duration-300 text-center font-medium">
+                    <a href="{{route('register')}}" class="px-8 py-3 bg-indigo-600 text-white rounded-md hover:bg-indigo-700 transition duration-300 text-center font-medium">
                         Get Started
                     </a>
-                    <a href="#" class="px-8 py-3 border border-gray-300 text-gray-700 rounded-md hover:bg-gray-50 transition duration-300 text-center font-medium">
+                    <a href="{{route('register')}}" class="px-8 py-3 border border-gray-300 text-gray-700 rounded-md hover:bg-gray-50 transition duration-300 text-center font-medium">
                         Learn More
                     </a>
                 </div>
@@ -320,7 +320,7 @@
                                 </span>
                             </div>
                         </div>
-                        <a href="#" class="block w-full text-center px-4 py-2 border border-indigo-600 text-indigo-600 rounded-md hover:bg-indigo-600 hover:text-white transition duration-300">
+                        <a href="{{route('register')}}" class="block w-full text-center px-4 py-2 border border-indigo-600 text-indigo-600 rounded-md hover:bg-indigo-600 hover:text-white transition duration-300">
                             View Details
                         </a>
                     </div>
@@ -368,7 +368,7 @@
                                 </span>
                             </div>
                         </div>
-                        <a href="#" class="block w-full text-center px-4 py-2 border border-indigo-600 text-indigo-600 rounded-md hover:bg-indigo-600 hover:text-white transition duration-300">
+                        <a href="{{route('register')}}" class="block w-full text-center px-4 py-2 border border-indigo-600 text-indigo-600 rounded-md hover:bg-indigo-600 hover:text-white transition duration-300">
                             View Details
                         </a>
                     </div>
@@ -418,7 +418,7 @@
                                 </span>
                             </div>
                         </div>
-                        <a href="#" class="block w-full text-center px-4 py-2 border border-indigo-600 text-indigo-600 rounded-md hover:bg-indigo-600 hover:text-white transition duration-300">
+                        <a href="{{route('register')}}" class="block w-full text-center px-4 py-2 border border-indigo-600 text-indigo-600 rounded-md hover:bg-indigo-600 hover:text-white transition duration-300">
                             View Details
                         </a>
                     </div>
@@ -427,7 +427,7 @@
             </div>
             
             <div class="text-center mt-12">
-                <a href="#" class="inline-block px-8 py-3 bg-indigo-600 text-white rounded-md hover:bg-indigo-700 transition duration-300 font-medium">
+                <a href="{{route('register')}}" class="inline-block px-8 py-3 bg-indigo-600 text-white rounded-md hover:bg-indigo-700 transition duration-300 font-medium">
                     View All Properties
                 </a>
             </div>
@@ -467,7 +467,7 @@
                         </div>
                     </div>
                     <p class="text-gray-700 mb-6">
-                        "EstatePro has completely transformed how I manage my rental properties. The automated rent collection alone has saved me hours each month, and their maintenance coordination is top-notch."
+                        "Coderants Real Estate has completely transformed how I manage my rental properties. The automated rent collection alone has saved me hours each month, and their maintenance coordination is top-notch."
                     </p>
                     <div class="flex items-center">
                         <img src="https://randomuser.me/api/portraits/women/43.jpg" alt="Sarah Johnson" class="w-12 h-12 rounded-full mr-4">
@@ -500,7 +500,7 @@
                         </div>
                     </div>
                     <p class="text-gray-700 mb-6">
-                        "As a first-time landlord, I was overwhelmed with all the regulations and paperwork. EstatePro made everything simple and took the stress out of property management."
+                        "As a first-time landlord, I was overwhelmed with all the regulations and paperwork. Coderants Real Estate made everything simple and took the stress out of property management."
                     </p>
                     <div class="flex items-center">
                         <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Michael Chen" class="w-12 h-12 rounded-full mr-4">
@@ -552,13 +552,13 @@
         <div class="max-w-7xl mx-auto text-center">
             <h2 class="text-3xl lg:text-4xl font-bold mb-6">Ready to Simplify Your Property Management?</h2>
             <p class="text-lg mb-8 max-w-3xl mx-auto">
-                Join hundreds of property owners who are saving time and increasing their returns with EstatePro.
+                Join hundreds of property owners who are saving time and increasing their returns with Coderants Real Estate.
             </p>
             <div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4">
                 <a href="{{ route('register') }}" class="px-8 py-3 bg-white text-indigo-600 rounded-md hover:bg-gray-100 transition duration-300 font-medium">
                     Get Started for Free
                 </a>
-                <a href="#" class="px-8 py-3 border border-white text-white rounded-md hover:bg-indigo-700 transition duration-300 font-medium">
+                <a href="{{route('register')}}" class="px-8 py-3 border border-white text-white rounded-md hover:bg-indigo-700 transition duration-300 font-medium">
                     Schedule a Demo
                 </a>
             </div>
@@ -573,7 +573,7 @@
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-indigo-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
                     </svg>
-                    <span class="ml-2 text-xl font-bold text-white">EstatePro</span>
+                    <span class="ml-2 text-xl font-bold text-white">Coderants Real Estate</span>
                 </div>
                 <p class="mb-4">
                     Professional real estate management solutions for property owners and investors.
@@ -605,7 +605,7 @@
             <div>
                 <h3 class="text-white font-semibold text-lg mb-4">Company</h3>
                 <ul class="space-y-2">
-                    <li><a href="#" class="hover:text-white transition duration-300">About Us</a></li>
+                    <li><a href="{{route('aboutus')}}" class="hover:text-white transition duration-300">About Us</a></li>
                     <li><a href="#" class="hover:text-white transition duration-300">Careers</a></li>
                     <li><a href="#" class="hover:text-white transition duration-300">Blog</a></li>
                     <li><a href="#" class="hover:text-white transition duration-300">Press</a></li>
@@ -616,11 +616,11 @@
             <div>
                 <h3 class="text-white font-semibold text-lg mb-4">Solutions</h3>
                 <ul class="space-y-2">
-                    <li><a href="#" class="hover:text-white transition duration-300">Residential</a></li>
-                    <li><a href="#" class="hover:text-white transition duration-300">Commercial</a></li>
-                    <li><a href="#" class="hover:text-white transition duration-300">Vacation Rentals</a></li>
-                    <li><a href="#" class="hover:text-white transition duration-300">HOA Management</a></li>
-                    <li><a href="#" class="hover:text-white transition duration-300">Real Estate Investors</a></li>
+                    <li><a href="#" class="hover:text-white transition duration-300">Residential buildings</a></li>
+                    <li><a href="#" class="hover:text-white transition duration-300">Commercial buildings</a></li>
+                    <li><a href="#" class="hover:text-white transition duration-300">commercial plot</a></li>
+                    <li><a href="#" class="hover:text-white transition duration-300"></a>Residential plot</li>
+                   
                 </ul>
             </div>
             
@@ -629,7 +629,7 @@
                 <ul class="space-y-2">
                     <li><a href="#" class="hover:text-white transition duration-300">Help Center</a></li>
                     <li><a href="#" class="hover:text-white transition duration-300">Community</a></li>
-                    <li><a href="#" class="hover:text-white transition duration-300">Contact Us</a></li>
+                    <li><a href="{{route('aboutus')}}" class="hover:text-white transition duration-300">Contact Us</a></li>
                     <li><a href="#" class="hover:text-white transition duration-300">Privacy Policy</a></li>
                     <li><a href="#" class="hover:text-white transition duration-300">Terms of Service</a></li>
                 </ul>
@@ -637,7 +637,7 @@
         </div>
         
         <div class="max-w-7xl mx-auto mt-12 pt-8 border-t border-gray-800 text-sm text-center">
-            <p>&copy; 2025 EstatePro. All rights reserved.</p>
+            <p>&copy; 2025 Coderants Real Estate. All rights reserved.</p>
         </div>
     </footer>
 </body>

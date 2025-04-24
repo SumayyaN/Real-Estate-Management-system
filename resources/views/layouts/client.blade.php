@@ -35,7 +35,7 @@
             <div class="flex justify-between h-16">
                 <div class="flex items-center space-x-8">
                     <a href="{{ route('client.properties.index') }}" class="text-lg font-semibold text-gray-900">
-                        EstatePro
+                        Coderants Real Estate
                     </a>
                     <div class="hidden md:flex space-x-4">
                         <a href="{{ route('client.properties.index') }}" class="inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium text-gray-500 hover:text-gray-700 hover:border-gray-300">
@@ -131,7 +131,7 @@
     <footer class="bg-white border-t mt-12">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
             <p class="text-center text-gray-500 text-sm">
-                &copy; {{ date('Y') }} EstatePro. All rights reserved.
+                &copy; {{ date('Y') }} Coderants Real Estate. All rights reserved.
             </p>
         </div>
         

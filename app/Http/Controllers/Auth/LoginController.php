@@ -41,7 +41,7 @@ class LoginController extends Controller
             
             // Prepare welcome message
             $welcomeMessage = $isNewUser 
-                ? 'Welcome to EstatePro!'
+                ? 'Welcome to Coderants Real Estate!'
                 : 'Welcome back, ' . $user->name . '!';
             
             // Redirect based on role with welcome message

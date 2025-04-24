@@ -30,6 +30,6 @@ class RegisterController extends Controller
         Auth::login($user);
 
         return redirect('/client/properties')
-            ->with('welcome', 'Welcome to EstatePro, ' . $user->name . '!');
+            ->with('welcome', 'Welcome to Coderants Real Estate, ' . $user->name . '!');
     }
 }

@@ -28,7 +28,7 @@
                     <p class="mt-2 text-3xl font-extrabold text-gray-900">{{ $stats['occupied_units'] ?? 0 }}</p>
                 </div>
                 <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition">
-                    <h3 class="text-sm font-medium text-gray-500">Pending Applications</h3>
+                    <h3 class="text-sm font-medium text-gray-500">Pending Appointments</h3>
                     <p class="mt-2 text-3xl font-extrabold text-gray-900">{{ $stats['pending_applications'] ?? 0 }}</p>
                 </div>
                 <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition">

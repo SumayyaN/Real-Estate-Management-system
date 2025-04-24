@@ -171,3 +171,12 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     // Add other profile routes if needed
 });
+
+//aboutpage
+Route::get('/aboutus', function () {
+    return view('aboutus');
+})->name('aboutus');
+
+Route::get('/contact', function () {
+    return view('contact');
+})->name('contact');

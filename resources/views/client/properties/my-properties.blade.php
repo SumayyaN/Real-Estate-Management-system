@@ -13,8 +13,8 @@
             
             @foreach($userInquiries as $inquiry)
                 <div class="border rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow">
-                    @if($property->image && file_exists(public_path('storage/properties/' . $property->image)))
-                        <img src="{{ asset('storage/properties/' . $property->image) }}" 
+                    @if($property->image && file_exists(public_path('storage/' . $property->image)))
+                        <img src="{{ asset('storage/' . $property->image) }}" 
                             alt="{{ $property->name }}" 
                             class="w-full h-48 object-cover"
                             onerror="this.onerror=null; this.parentElement.innerHTML='<div class=\'w-full h-48 bg-gray-200 flex items-center justify-center\'><span class=\'text-gray-500\'>No Image</span></div>'">
